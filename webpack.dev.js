@@ -59,21 +59,21 @@ module.exports = (env, options) => {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: [{
-              loader: 'babel-loader',
-              options: {
-                  cacheDirectory: true
-              }
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
           }, {
-              // https://www.npmjs.com/package/webpack-preprocessor-loader
-              loader: 'webpack-preprocessor-loader',
-              options: {
-                  debug: options.mode !== 'production',
-                  params: {
-                      debug: options.mode !== 'production',
-                      mode: options.mode,
-                  },
-                  verbose: false,
+            // https://www.npmjs.com/package/webpack-preprocessor-loader
+            loader: 'webpack-preprocessor-loader',
+            options: {
+              debug: options.mode !== 'production',
+              params: {
+                debug: options.mode !== 'production',
+                mode: options.mode,
               },
+              verbose: false,
+            },
           }]
         },
         {
@@ -85,13 +85,24 @@ module.exports = (env, options) => {
               options: {
                 // Comment this if you want to use "minified" classnames
                 modules: {
-                    // If modules is true: Make all CSS classes 5 char length. Ie: '._3yDYR'
-                    localIdentName: '[hash:base64:5]',
+                  // If modules is true: Make all CSS classes 5 char length. Ie: '._3yDYR'
+                  localIdentName: '[hash:base64:5]',
                 },
                 // We need this bc of 'postcss-loader': https://github.com/webpack-contrib/css-loader#importloaders
                 importLoaders: 2,
                 sourceMap: isDev
               }
+            }, {
+              // https://www.npmjs.com/package/webpack-preprocessor-loader
+              loader: 'webpack-preprocessor-loader',
+              options: {
+                debug: options.mode !== 'production',
+                params: {
+                  debug: options.mode !== 'production',
+                  mode: options.mode,
+                },
+                verbose: false,
+              },
             }
           ]
           // use: [ 'css-to-mui-loader' ]
@@ -135,7 +146,7 @@ module.exports = (env, options) => {
         chunkFilename: 'css/[id].css',
         // Optional as the plugin cannot automatically detect if you are using HOT, not for production use
         hot: isDev
-    }),
+      }),
     ],
   };
 
